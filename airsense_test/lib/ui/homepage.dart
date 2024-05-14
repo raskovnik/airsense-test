@@ -4,8 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:d_chart/d_chart.dart';
 import 'package:intl/intl.dart';
 
-// import 'package:charts_flutter/'
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -29,12 +27,12 @@ class _HomePageState extends State<HomePage> {
         child: BlocBuilder<DataCubit, DataState>(
           builder: (context, state) {
             if (state is DataLoading) {
-              return Column(
+              return const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Center(child: CircularProgressIndicator()),
-                  const Center(child: Text("Loading data for device 00000000000000bb"))
+                  Center(child: CircularProgressIndicator()),
+                  Center(child: Text("Loading data for device 00000000000000bb"))
                 ],
               );
             } else if (state is DataLoaded) {

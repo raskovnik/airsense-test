@@ -1,5 +1,5 @@
 part of 'data_cubit.dart';
-
+// This file defines the available states for the homepage
 sealed class DataState {}
 
 final class DataInitial extends DataState {}
