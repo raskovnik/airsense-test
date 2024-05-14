@@ -16,20 +16,19 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
 
-    Future<void> _refreshData() async {
-      context.read<DataCubit>().fetchData();
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: const Center(child: Text('Test App')),
       ),
-      body: RefreshIndicator(
+
+      body: RefreshIndicator( // pulling down refreshes the ui
         onRefresh: () async {
           BlocProvider.of<DataCubit>(context).fetchData();
         },
         child: SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
+
+          // using a bloc builder to build different ui based on the current state
           child: BlocBuilder<DataCubit, DataState>(
             builder: (context, state) {
               if (state is DataLoading) {
@@ -38,14 +37,14 @@ class _HomePageState extends State<HomePage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(height: MediaQuery.of(context).size.height * 0.4),
-                    Center(child: CircularProgressIndicator()),
-                    Center(child: Text("Loading data for device 00000000000000bb"))
+                    const Center(child: CircularProgressIndicator()),
+                    const Center(child: Text("Loading data for device 00000000000000bb"))
                   ],
                 );
               } else if (state is DataLoaded) {
                 final currentDate = DateTime.now();
                 final dateTo = DateFormat('yyyy-MM-dd HH:mm:ss').format(currentDate);
-                final dateFrom = DateFormat('yyyy-MM-dd HH:mm:ss').format(currentDate.subtract(Duration(days: 7)));
+                final dateFrom = DateFormat('yyyy-MM-dd HH:mm:ss').format(currentDate.subtract(const Duration(days: 7)));
                 final temperatureGroupList = [
                   TimeGroup(id: '1', data: state.data)
                 ];
@@ -53,9 +52,9 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.all(4.0),
                   child: Column(
                     children: [
-                      Center(child: Text("Temperature for date $dateFrom - $dateTo")),
+                      Center(child: Text("Temperature Graph for $dateFrom - $dateTo")),
                       AspectRatio(
-                        aspectRatio: 16/9,
+                        aspectRatio: 16 / 9,
                         child: DChartLineT(groupList: temperatureGroupList,
                       )
                       ),

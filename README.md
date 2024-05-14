@@ -90,3 +90,5 @@ You need to clone the app to your machine to be able to install and run the app.
 
 Congratulations! You have successfully installed and run the app on Ubuntu and Android/iOS.
 
+## App Architecture
+The app uses the BLoC(Business Logic Component) architecture which provides a structured way to separate the presentation layer from the business logic layer.
