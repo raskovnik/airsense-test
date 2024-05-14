@@ -90,8 +90,14 @@ You need to clone the app to your machine to be able to install and run the app.
 
 Congratulations! You have successfully installed and run the app.
 
+### Compiling the app
+To compile the app for release, run the command: 
+```bash
+    flutter build apk --release
+```
+
 ## How to use the app
-Once the application opens, it fetches the data from the API, and displays a temperature graph of the sensor from the last 7 days. To get updated data of the sensor, pull down to refresh!
+Once the application opens, it fetches data from the API, and displays a temperature graph of the sensor from the last 7 days. To get updated data of the sensor, pull down to refresh!
 
 ## App Architecture
-The app uses the BLoC(Business Logic Component) architecture which provides a structured way to separate the presentation layer from the business logic layer.
+The app uses BLoC(Business Logic Component) architecture which provides a structured way to separate the presentation layer from the business logic layer.
